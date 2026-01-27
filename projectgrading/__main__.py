@@ -1,12 +1,12 @@
 import asyncio
 
 from .database import create_tables
-from .ui import GradingManager
+from .ui import GradingApp
 
 
 async def main():
     await create_tables()
-    app = GradingManager()
+    app = GradingApp()
     await app.run_async()
 
 

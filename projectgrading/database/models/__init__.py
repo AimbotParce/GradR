@@ -4,6 +4,7 @@ Base = declarative_base()
 mapper_registry = registry()
 
 from .classroom import Classroom
+from .classroom_membership import ClassroomMembership
 from .delivery import Delivery
 from .grade import Grade
 from .project import Project
@@ -15,6 +16,7 @@ from .team_membership import TeamMembership
 
 __all__ = [
     "Classroom",
+    "ClassroomMembership",
     "Delivery",
     "Project",
     "Student",
