@@ -4,17 +4,8 @@ Main Textual app for ProjectGrading
 
 from textual.app import App, ComposeResult
 from textual.binding import Binding
-from textual.containers import Center, Container, Middle
-from textual.widgets import (
-    Button,
-    Footer,
-    Header,
-    Label,
-    Markdown,
-    Sparkline,
-    Static,
-    Welcome,
-)
+from textual.containers import Center, Middle
+from textual.widgets import Button, Footer, Header, Label, Static
 
 from .students import StudentsScreen
 from .subjects import SubjectsListScreen
@@ -61,16 +52,6 @@ class GradingApp(App):
     def on_mount(self) -> None:
         """Handle mount event."""
         self.title = "ProjectGrading"
-
-    def action_home(self) -> None:
-        """Go back to home screen."""
-        while len(self.screen_stack) > 1:
-            self.pop_screen()
-
-
-if __name__ == "__main__":
-    app = GradingApp()
-    app.run()
 
     def action_home(self) -> None:
         """Go back to home screen."""
