@@ -23,9 +23,7 @@ class StudentsScreen(BaseScreen):
                 Button("Add Student", id="add-student", variant="primary"),
                 Label(""),
                 Label("[bold cyan]Existing Students:[/bold cyan]"),
-                ScrollableContainer(
-                    id="students-list",
-                ),
+                ScrollableContainer(id="students-list"),
             )
         )
         yield Footer()

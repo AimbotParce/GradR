@@ -3,7 +3,13 @@ Subject management screens
 """
 
 from sqlalchemy import func, select
-from textual.containers import Container, Horizontal, ScrollableContainer, Vertical
+from textual.containers import (
+    Container,
+    Horizontal,
+    HorizontalGroup,
+    ScrollableContainer,
+    Vertical,
+)
 from textual.widgets import Button, Footer, Header, Input, Label
 
 from ...database import get_async_session
@@ -73,7 +79,7 @@ class ClassroomsListScreen(BaseScreen):
                         )
                     )
                     member_count = count_result.scalar_one()
-                    item = Horizontal(
+                    item = HorizontalGroup(
                         Button(
                             f"Classroom {classroom.id} ({member_count} members)",
                             id=f"btn-classroom-{classroom.id}",

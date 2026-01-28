@@ -3,7 +3,13 @@ Projects management screens.
 """
 
 from sqlalchemy import func, select
-from textual.containers import Container, Horizontal, ScrollableContainer, Vertical
+from textual.containers import (
+    Container,
+    Horizontal,
+    HorizontalGroup,
+    ScrollableContainer,
+    Vertical,
+)
 from textual.widgets import Button, Footer, Header, Input, Label
 
 from ..database import get_async_session
@@ -102,7 +108,7 @@ class ProjectDetailsScreen(BaseScreen):
                     avg_grade = grade_result.scalars().first()
 
                     deliveries_list.mount(
-                        Horizontal(
+                        HorizontalGroup(
                             Button(participant_names, id=f"team-{team.id}"),
                             Button("Add Submission", id=f"add-delivery-{team.id}", variant="primary"),
                             Button(f"View Submission", id=f"delivery-{delivery.id}", variant="warning"),
@@ -113,7 +119,7 @@ class ProjectDetailsScreen(BaseScreen):
                     )
                 else:
                     deliveries_list.mount(
-                        Horizontal(
+                        HorizontalGroup(
                             Button(participant_names, id=f"team-{team.id}"),
                             Button("Add Submission", id=f"add-delivery-{team.id}", variant="primary"),
                             Button(f"View Submission", variant="warning", disabled=True),

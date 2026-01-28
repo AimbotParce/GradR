@@ -1,5 +1,11 @@
 from sqlalchemy import func, select
-from textual.containers import Container, Horizontal, ScrollableContainer, Vertical
+from textual.containers import (
+    Container,
+    Horizontal,
+    HorizontalGroup,
+    ScrollableContainer,
+    Vertical,
+)
 from textual.widgets import Button, Footer, Header, Input, Label
 
 from ..database import get_async_session
@@ -109,14 +115,14 @@ class TeamDetailsScreen(BaseScreen):
                 if await session.get(TeamMembership, {"student_id": student.id, "team_id": self.team_id}):
                     # Student is already a member
                     current_list.mount(
-                        Horizontal(
+                        HorizontalGroup(
                             Button(student.name),  # Only for display, no action
                             Button("Remove", id=f"remove-{student.id}", variant="error"),
                         )
                     )
                 else:
                     available_list.mount(
-                        Horizontal(
+                        HorizontalGroup(
                             Button(student.name),  # Only for display, no action
                             Button("Add", id=f"add-{student.id}", variant="success"),
                         )

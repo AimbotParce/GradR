@@ -3,7 +3,13 @@ Classroom management screens.
 """
 
 from sqlalchemy import delete, select
-from textual.containers import Container, Horizontal, ScrollableContainer, Vertical
+from textual.containers import (
+    Container,
+    Horizontal,
+    HorizontalGroup,
+    ScrollableContainer,
+    Vertical,
+)
 from textual.widgets import Button, Footer, Header, Input, Label
 
 from ...database import get_async_session
@@ -79,7 +85,7 @@ class ClassroomMenuScreen(BaseScreen):
 
             for student in students:
                 students_list.mount(
-                    Horizontal(
+                    HorizontalGroup(
                         Button(f"👤 {student.name}"),  # Just for display, no action
                         Button("Remove", id=f"remove-student-{student.id}", variant="error", classes="action-button"),
                     )
@@ -101,7 +107,7 @@ class ClassroomMenuScreen(BaseScreen):
                     description_text = description_text[:27] + "..."
 
                 projects_list.mount(
-                    Horizontal(
+                    HorizontalGroup(
                         Button(
                             f"📋 {project.name}" + (f" ({description_text})" if description_text else ""),
                             id=f"view-project-{project.id}",

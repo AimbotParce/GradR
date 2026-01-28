@@ -3,7 +3,13 @@ Subject management screens
 """
 
 from sqlalchemy import select
-from textual.containers import Container, Horizontal, ScrollableContainer, Vertical
+from textual.containers import (
+    Container,
+    Horizontal,
+    HorizontalGroup,
+    ScrollableContainer,
+    Vertical,
+)
 from textual.widgets import Button, Footer, Header, Input, Label
 
 from ...database import get_async_session
@@ -53,7 +59,7 @@ class SubjectsListScreen(BaseScreen):
                     desc_text = subject.description or ""
                     if desc_text and len(desc_text) > 50:
                         desc_text = desc_text[:47] + "..."
-                    item = Horizontal(
+                    item = HorizontalGroup(
                         Button(
                             subject.name + (f": {desc_text}" if desc_text else ""),
                             id=f"btn-subject-{subject.id}",
